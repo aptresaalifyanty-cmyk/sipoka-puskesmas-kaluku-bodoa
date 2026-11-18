@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block content %}<h1>Dashboard</h1><p>Selamat datang, {{session.full_name}}.</p>
+<div class="stats"><div class="stat"><b>{{stats.pending}}</b><span>Menunggu verifikasi</span></div><div class="stat"><b>{{stats.approved}}</b><span>Disetujui</span></div><div class="stat"><b>{{stats.items}}</b><span>Jenis barang aktif</span></div><div class="stat"><b>{{stats.low}}</b><span>Stok ≤ stok minimum</span></div></div>
+<div class="card"><h2>Permintaan terbaru</h2><div class="table-wrap"><table><tr><th>No. Permintaan</th><th>Unit</th><th>Tanggal</th><th>Status</th><th></th></tr>
+{% for r in rows %}<tr><td>{{r.request_no}}</td><td>{{r.unit_name}}</td><td>{{r.requested_at[:16].replace('T',' ')}}</td><td><span class="status">{{r.status}}</span></td><td><a href="{{url_for('request_detail',rid=r.id)}}">Detail</a></td></tr>{% else %}<tr><td colspan="5">Belum ada permintaan.</td></tr>{% endfor %}</table></div></div>{% endblock %}

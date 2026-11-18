@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block content %}<h1>Ubah PIN</h1><form method="post" class="card narrow"><label>PIN lama</label><input name="old_pin" type="password" required><label>PIN baru (minimal 6 angka)</label><input name="new_pin" type="password" minlength="6" pattern="[0-9]{6,}" required><button>Ubah PIN</button></form>{% endblock %}

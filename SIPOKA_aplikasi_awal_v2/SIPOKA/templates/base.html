@@ -1,0 +1,10 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIPOKA - Puskesmas Kaluku Bodoa</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head>
+<body><header><div><b class="brand">💊 SIPOKA</b><small>Puskesmas Kaluku Bodoa</small></div>
+{% if session.get('user_id') %}<nav><a href="{{ url_for('dashboard') }}">Dashboard</a><a href="{{ url_for('items') }}">Obat/BMHP</a><a href="{{ url_for('requests_list') }}">Permintaan</a>
+{% if session.get('role') in ['unit','admin'] %}<a href="{{ url_for('new_request') }}">Buat Permintaan</a>{% endif %}
+{% if session.get('role') in ['admin','farmasi','pimpinan'] %}<a href="{{ url_for('reports') }}">Laporan</a>{% endif %}
+{% if session.get('role')=='admin' %}<a href="{{ url_for('users') }}">Pengguna</a>{% endif %}
+<a href="{{ url_for('change_pin') }}">Ubah PIN</a><a href="{{ url_for('logout') }}">Keluar</a></nav>{% endif %}</header>
+<main>{% with messages=get_flashed_messages(with_categories=true) %}{% for cat,msg in messages %}<div class="flash {{cat}}">{{msg}}</div>{% endfor %}{% endwith %}{% block content %}{% endblock %}</main>
+<footer>SIPOKA · Sistem Informasi Permintaan dan Distribusi Obat/BMHP</footer></body></html>

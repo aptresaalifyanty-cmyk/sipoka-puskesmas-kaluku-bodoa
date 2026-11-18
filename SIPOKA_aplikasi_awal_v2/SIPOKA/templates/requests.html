@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block content %}<h1>Daftar Permintaan</h1><div class="card table-wrap"><table><tr><th>No.</th><th>Unit</th><th>Tanggal</th><th>Status</th><th></th></tr>
+{% for r in rows %}<tr><td>{{r.request_no}}</td><td>{{r.unit_name}}</td><td>{{r.requested_at[:16].replace('T',' ')}}</td><td>{{r.status}}</td><td><a href="{{url_for('request_detail',rid=r.id)}}">Buka</a></td></tr>{% else %}<tr><td colspan="5">Belum ada data.</td></tr>{% endfor %}</table></div>{% endblock %}

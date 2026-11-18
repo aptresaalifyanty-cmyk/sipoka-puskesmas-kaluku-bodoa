@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block content %}<h1>Laporan Distribusi</h1><div class="card table-wrap"><table><tr><th>Tanggal</th><th>No. Permintaan</th><th>Unit</th><th>Barang</th><th>Jumlah</th><th>Penerima</th><th>Petugas farmasi</th></tr>
+{% for r in rows %}<tr><td>{{r.distributed_at[:16].replace('T',' ')}}</td><td>{{r.request_no}}</td><td>{{r.unit_name}}</td><td>{{r.name}}</td><td>{{r.qty:g}} {{r.unit}}</td><td>{{r.received_by}}</td><td>{{r.officer}}</td></tr>{% else %}<tr><td colspan="7">Belum ada transaksi distribusi.</td></tr>{% endfor %}</table></div>{% endblock %}
